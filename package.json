@@ -1,0 +1,36 @@
+{
+  "name": "hotel-booking-platform",
+  "version": "1.0.0",
+  "description": "Microservices hotel booking platform",
+  "private": true,
+  "workspaces": [
+    "services/*",
+    "shared/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"pnpm --filter api-gateway dev\" \"pnpm --filter auth-service dev\" \"pnpm --filter hotels-service dev\" \"pnpm --filter bookings-service dev\" \"pnpm --filter payments-service dev\" \"pnpm --filter search-service dev\" \"pnpm --filter notifications-service dev\"",
+    "build": "pnpm -r --workspace-concurrency=1 build",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint",
+    "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
+    "clean": "pnpm -r --parallel exec rm -rf node_modules dist",
+    "migrate:all": "pnpm --filter auth-service prisma:migrate && pnpm --filter hotels-service prisma:migrate && pnpm --filter bookings-service prisma:migrate && pnpm --filter payments-service prisma:migrate",
+    "seed:all": "pnpm --filter auth-service seed && pnpm --filter hotels-service seed",
+    "prisma:generate": "pnpm -r --parallel exec prisma generate",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}
