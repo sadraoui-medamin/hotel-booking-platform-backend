@@ -369,40 +369,6 @@ make setup
 # Start all services
 pnpm run dev
 ```
-
-#### Option 2: Manual Setup
-```bash
-# Install dependencies
-pnpm install
-
-# Setup environment files
-chmod +x scripts/setup-env.sh
-./scripts/setup-env.sh
-
-# Start infrastructure
-docker-compose up -d
-
-# Wait for services (30 seconds)
-sleep 30
-
-# Generate Prisma clients
-pnpm run prisma:generate
-
-# Run migrations
-pnpm --filter auth-service prisma migrate dev
-pnpm --filter hotels-service prisma migrate dev
-pnpm --filter bookings-service prisma migrate dev
-pnpm --filter payments-service prisma migrate dev
-pnpm --filter reviews-service prisma migrate dev
-
-# Seed databases
-pnpm --filter auth-service seed
-pnpm --filter hotels-service seed
-
-# Start services
-pnpm run dev
-```
-
 ---
 
 ## 📖 API Documentation
@@ -591,39 +557,6 @@ Worker Service
 ```
 
 ---
-
-## 🚢 Deployment
-
-### Docker Compose (Development)
-```bash
-docker-compose up -d
-```
-
-### Docker Compose (Production)
-```bash
-docker-compose -f docker-compose.prod.yml up -d
-```
-
-### Kubernetes
-```bash
-# Deploy everything
-chmod +x scripts/deploy-k8s.sh
-./scripts/deploy-k8s.sh
-
-# Or manual deployment
-kubectl apply -f k8s/namespace.yaml
-kubectl apply -f k8s/postgres.yaml
-kubectl apply -f k8s/redis.yaml
-kubectl apply -f k8s/elasticsearch.yaml
-kubectl apply -f k8s/auth-service.yaml
-kubectl apply -f k8s/hotels-service.yaml
-kubectl apply -f k8s/api-gateway.yaml
-kubectl apply -f k8s/ingress.yaml
-
-# Check status
-kubectl get pods -n hotel-booking
-kubectl get services -n hotel-booking
-```
 
 ### Environment Variables
 
@@ -833,15 +766,5 @@ pnpm --filter auth-service prisma migrate deploy --force
 
 MIT License - feel free to use this project for learning or commercial purposes.
 
----
-
-## 👥 Support
-
-For issues and questions:
-- Open a GitHub issue
-- Check troubleshooting guide
-- Review service logs: `docker-compose logs -f SERVICE_NAME`
-
----
 
 **Built with ❤️ using NestJS, TypeScript, and modern microservices architecture**
