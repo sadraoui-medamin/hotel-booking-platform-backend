@@ -51,6 +51,7 @@ Monitoring:   Grafana + Prometheus (optional)
 ### Service Architecture
 
 ```
+
                     ┌──────────────────┐
                     │   React Client   │
                     └────────┬─────────┘
@@ -83,10 +84,10 @@ Monitoring:   Grafana + Prometheus (optional)
                              │
     ┌────────────────────────┼────────────────────┐
     │                        │                    │
-┌───▼────┐          ┌────────▼───┐      ┌────────▼──┐
+┌───▼────┐          ┌────────▼───┐      ┌────────▼────┐
 │Postgres│          │   Redis    │      │Elasticsearch│
-│ :5432  │          │   :6379    │      │   :9200    │
-└────────┘          └────────────┘      └───────────┘
+│ :5432  │          │   :6379    │      │   :9200     │
+└────────┘          └────────────┘      └─────────────┘
 ```
 
 ### Database Per Service Pattern
