@@ -101,6 +101,21 @@ Each microservice has its own database for:
 ---
 
 ## 🎯 Services
+# All  microservices and their ports:
+
+API Gateway          → Port 3000  (Main entry point)
+Auth Service         → Port 3001  (Login/Register)
+Hotels Service       → Port 3002  (Hotels & Rooms)
+Bookings Service     → Port 3003  (Reservations)
+Payments Service     → Port 3004  (Stripe/PayPal)
+Search Service       → Port 3005  (Elasticsearch)
+Notifications Service → Port 3006  (Email/SMS)
+Worker Service       → Port 3007  (Background jobs)
+Reviews Service      → Port 3008  (User reviews)
+Analytics Service    → Port 3009  (Reports)
+Chat Service         → Port 3010  (Live chat)
+Currency Service     → Port 3011  (Exchange rates)
+Loyalty Service      → Port 3012  (Points/Rewards)
 
 ### 1. API Gateway (Port 3000)
 **Purpose**: Single entry point for all client requests
